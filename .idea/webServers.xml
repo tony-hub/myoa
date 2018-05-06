@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="c6984b4c-de1d-47d3-806a-6b717993e34f" name="djang_py2" url="http://192.168.255.129">
+        <fileTransfer host="192.168.255.129" port="22" rootFolder="/home/pyvip/oa" accessType="SFTP" password="dfdadfd3dfdedfc2dfc5dfc4dfdcdfc3dfda" username="pyvip">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

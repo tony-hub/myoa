@@ -1,0 +1,45 @@
+{% extends 'base/main_user_base.html' %}
+
+
+<!-- page heading start-->
+    {% block page_heading %}
+            <div class="page-heading">
+                <h3>
+                    编辑个人信息
+                </h3>
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="#">Dashboard</a>
+                    </li>
+                    <li class="active"> My Dashboard </li>
+
+                </ul>
+            </div>
+    {% endblock %}
+<!-- page heading end-->
+
+
+<!--body wrapper start-->
+    {% block body_wrapper %}
+            <div class="wrapper">
+
+            <p style="background-color: #ff6a6a">{{ message }}</p>
+
+        <form class= "login" method="post" action="/account/user_edit/">
+                {% csrf_token %}
+                <p>用户名:<input type="text" value="{{ current_user.name }}" name="name"></p>
+                <p>邮箱:{{ current_user.email }}<a href="/account/bind_user_email/">绑定邮箱</a></p>
+                <p>密码:<input type="text"  name="password"></p>
+                <p>账户更新时间：{{ current_user.register_time }}</p>
+                <p>上次登录时间：{{ current_user.last_login }}</p>
+                <input type="submit">
+        </form>
+        <img style="height: 100px;width:150px;" src="/static/images/useravatars/{{ current_user.avatar }}"><br/>
+        <form method="post" action="/account/upload_avatar/" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="file" name="user_avatar" />
+                <input type="submit" value="上传头像" />
+        </form>
+        </div>
+    {% endblock %}
+<!--body wrapper end-->

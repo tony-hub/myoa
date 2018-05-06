@@ -1,0 +1,68 @@
+{% extends 'base/main_user_base.html' %}
+{% load staticfiles %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'common/sweetalert/sweetalert.css' %}">
+    <script src={% static 'common/sweetalert/sweetalert.min.js'%}></script>
+{% endblock %}
+
+<!-- page heading start-->
+    {% block page_heading %}
+
+        <div class="page-heading">
+         {% if messages %}
+            {% for message in messages %}
+                {% if message.tags == 'success' %}
+                    <script type="text/javascript">
+                        swal({
+                            'title':'正确',
+                            'text':'{{ message }}',
+                            'type':'success',
+                            'showCancelButton':false,
+                            'showConfirmButton':false,
+                            'timer':1500
+                                }
+                        )
+
+                    </script>
+                {% elif message.tags == 'error' %}
+                      <script type="text/javascript">
+                        swal({
+                            'title':'错误',
+                            'text':'{{ message }}',
+                            'type':'error',
+                            'showCancelButton':false,
+                            'showConfirmButton':false,
+                            'timer':1500
+                                }
+                        )
+                    </script>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+
+                <h3>
+                    绑定邮箱
+                </h3>
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="#">Dashboard</a>
+                    </li>
+                    <li class="active"> My Dashboard </li>
+                </ul>
+            </div>
+    {% endblock %}
+<!-- page heading end-->
+
+<!--body wrapper start-->
+    {% block body_wrapper %}
+         <div class="wrapper">
+            邮件验证页面<br>
+             原始邮箱：{% if current_user %}{{ current_user.email }}{% else %}还没有邮箱{% endif %}
+            <form class= "login" method="post" action="/account/bind_user_email/">
+                    {% csrf_token %}
+                    <p>新邮箱地址：<br><input type="text" name="email"></p>
+                    <input type="submit" value="发送">
+            </form>
+         </div>
+    {% endblock %}
+<!--body wrapper end-->
