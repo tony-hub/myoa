@@ -18,13 +18,13 @@ def add_article(request):
         return render(request, 'article/add_article.html', kw)
     if request.method == 'POST':
         postdata = request.POST.copy()
-        title = postdata.get('title', None)
-        article = postdata.get('article', None)
-        desc = postdata.get('desc', None)
-        category = postdata.get('category', None)
-        thumbnail = postdata.get('thumbnail', None)
-        tags = postdata.get('tags', None)
-        article_id = postdata.get('article_id', None)
+        title = postdata.get('title', '')
+        article = postdata.get('article', '')
+        desc = postdata.get('desc', '')
+        category = postdata.get('category', '')
+        thumbnail = postdata.get('thumbnail', '')
+        tags = postdata.get('tags', '')
+        article_id = postdata.get('article_id', '')
         add_article_lib(title, article, desc, category, thumbnail, tags, article_id)
 
 
