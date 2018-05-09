@@ -33,10 +33,25 @@ def del_category_tag_lib(c_uuid, t_uuid):
 
 
 def add_article_lib(title, article, desc, category, thumbnail, tags, article_id):
-    article = Article()
+    if title == '' or article == '':
+        return {'status': False, 'msg': '标题和内容不能为空'}
+    if category == '' or tags == '':
+        return {'status': False, 'msg': '分类和标签不能为空'}
+
+    if article_id != "":
+        article = Article.by_id(article_id)
+        article.tags = []
+    else:
+        article = Article()
     article.title = title
     article.content = article
     article.desc = desc
-    article.category = category
+    article.category_id = category
     article.thumbnail = thumbnail
-    article.tags = tags
+    for tag in tags:
+        article.tags.add(Tag.by_id(tag))
+    article.save()
+    if article_id:
+         return {'status': True, 'msg': '文章修改成功'}
+    return {'status': True, 'msg': '文章添加成功'}
+xxxx
